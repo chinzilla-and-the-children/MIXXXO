@@ -5,7 +5,9 @@ mainblue = "#155c7b"
 white = "#fff"
 
 class mixxxo:
+    # ========== Start of __init__(self) ========== #
     def __init__(self):
+        # --- Windows Settings --- #
         self.window = tkinter.Tk()
         self.window.title("mixxxo")
         self.window.geometry("640x400+300+150")
@@ -13,7 +15,9 @@ class mixxxo:
         self.window.configure(background = white)
         self.titleFont = tkinter.font.Font(family = "ChopinScript", size = 20)
         self.font = tkinter.font.Font(family = "나눔스퀘어", size = 12)
+        self.files = ""
 
+        # --- Main Window Objects --- #
         self.titleLabel = tkinter.Label(
             self.window,
             text = "mixxxo",
@@ -40,21 +44,25 @@ class mixxxo:
         self.titleLabel.pack(pady = 50)
         self.button.pack()
 
-        self.window.mainloop()
+        self.window.mainloop()      # Window Execute
+    # ========== End of __init__(self) ========== #
 
+    # --- Required Functions --- #
     def openFile(self):
         self.window.dirname = filedialog.askdirectory()
         if(self.window.dirname):
-            self.pathLabel = tkinter.Label(
+            self.files = tkinter.Listbox(
                 self.window,
-                text = self.window.dirname,
-                bg = white,
+                selectmode = 'extended',
+                height = 0,
                 font = self.font
             )
-            self.pathLabel.pack()
+            self.fileList(self.window.dirname)
             self.button.destroy()
+            self.files.pack()
 
     def fileList(self, path):
         file_list = os.listdir(path)
         file_list.sort()
-        print(file_list)
+        for i in range(len(file_list)):
+            self.files.insert(i, file_list[i])
