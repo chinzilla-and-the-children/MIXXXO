@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <io.h>
 #include <conio.h>
 
@@ -6,8 +7,12 @@ void main()
 {
 	_finddata_t fd;
 	long handle;
+	char Path[100] = ".";
+	char File_Path[100];
 	int result = 1;
-	handle = _findfirst(".\\*.*", &fd);  //í˜„ì¬ í´ë” ë‚´ ëª¨ë“  íŒŒì¼ì„ ì°¾ëŠ”ë‹¤.
+	
+	sprintf_s(File_Path, "%s\\*.fun", Path);
+	handle = _findfirst(File_Path, &fd);  //ÇöÀç Æú´õ ³» ¸ğµç ÆÄÀÏÀ» Ã£´Â´Ù.
 
 	if (handle == -1)
 	{
