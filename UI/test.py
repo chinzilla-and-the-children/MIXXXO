@@ -1,0 +1,2 @@
+import mxconf
+mxconf.mixxxo()
