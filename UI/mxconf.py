@@ -1,5 +1,5 @@
 import os, tkinter
-from tkinter import font, filedialog
+from tkinter import font, filedialog, messagebox
 
 mainblue = "#155c7b"
 white = "#fff"
@@ -14,8 +14,7 @@ class mixxxo:
         self.window.resizable(False, False)
         self.window.configure(background = white)
         self.titleFont = tkinter.font.Font(family = "ChopinScript", size = 20)
-        self.font = tkinter.font.Font(family = "나눔스퀘어", size = 12)
-        self.files = ""
+        self.font = tkinter.font.Font(family = "나눔스퀘어", size = 10)
 
         # --- Main Window Objects --- #
         self.titleLabel = tkinter.Label(
@@ -32,7 +31,7 @@ class mixxxo:
             command = self.openFile,
             relief = "groove",
             overrelief = "groove",
-            width = 15,
+            width = 10,
             repeatdelay = 1000,
             repeatinterval = 100,
             bd = 0,
@@ -51,18 +50,11 @@ class mixxxo:
     def openFile(self):
         self.window.dirname = filedialog.askdirectory()
         if(self.window.dirname):
-            self.files = tkinter.Listbox(
+            '''self.files = tkinter.Listbox(
                 self.window,
                 selectmode = 'extended',
                 height = 0,
                 font = self.font
-            )
-            self.fileList(self.window.dirname)
-            self.button.destroy()
-            self.files.pack()
-
-    def fileList(self, path):
-        file_list = os.listdir(path)
-        file_list.sort()
-        for i in range(len(file_list)):
-            self.files.insert(i, file_list[i])
+            )'''
+            
+            tkinter.messagebox.showinfo("filepath", self.window.dirname)
