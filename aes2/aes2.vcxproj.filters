@@ -24,8 +24,5 @@
     <ClCompile Include="dec2.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="split_path.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
