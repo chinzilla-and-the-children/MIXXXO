@@ -1,8 +1,12 @@
 import os, tkinter
 from tkinter import font, filedialog, messagebox
+from ctypes import *
 
 mainblue = "#155c7b"
 white = "#fff"
+'''fileLoad = WinDLL('File_load_all.dll')
+fileLoadFunc = fileLoad['file_load_all']
+fileLoadFunc.argtypes(c_wchar_p)'''
 
 class mixxxo:
     # ========== Start of __init__(self) ========== #
