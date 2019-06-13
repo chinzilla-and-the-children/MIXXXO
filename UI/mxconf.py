@@ -1,12 +1,19 @@
 import os, tkinter
 from tkinter import font, filedialog, messagebox
-from ctypes import *
+import ctypes as c
+
+'''dll1 = c.WinDLL('./File_load_all.dll')
+File_load_all = dll1['File_load_all']
+File_load_all.argtypes = [c.c_char_p]
+File_load_all.restype = c.c_void_p'''
+
+dll2 = c.WinDLL('./Dll1.dll')
+aes_decrypt = dll2['aes_decrypt']
+aes_decrypt.argtypes = [c.c_char_p]
+aes_decrypt.restype = c.c_int
 
 mainblue = "#155c7b"
 white = "#fff"
-'''fileLoad = WinDLL('File_load_all.dll')
-fileLoadFunc = fileLoad['file_load_all']
-fileLoadFunc.argtypes(c_wchar_p)'''
 
 class mixxxo:
     # ========== Start of __init__(self) ========== #
