@@ -1,2 +1,4 @@
-import mxconf
-mxconf.mixxxo()
+from mxconf import mixxxo
+
+mixxxo()
+

@@ -3,15 +3,22 @@ from tkinter import font, filedialog, messagebox
 import ctypes as c
 import sys
 
-dll2 = c.WinDLL('./dec_pro.dll')
-File_load_all = dll2['File_load_all']
-File_load_all.argtypes = [c.c_char_p]
-File_load_all.restype = c.c_int
-
 mainblue = "#155c7b"
 white = "#fff"
 
-class mixxxo:
+dll2 = c.WinDLL('./dec_pro.dll')
+aes_decrypt = dll2['aes_decrypt']
+aes_decrypt.argtypes = [c.c_char_p]
+aes_decrypt.restype = c.c_int
+
+kill_pro = dll2['KillPro']
+kill_pro.argtypes = [c.c_char_p]
+kill_pro.restype = c.c_int
+
+reg_del = dll2['RegDelFunc']
+reg_del.restype = c.c_int
+
+class aesDec:
     # ========== Start of __init__(self) ========== #
     def __init__(self):
         # --- Windows Settings --- #
@@ -32,10 +39,10 @@ class mixxxo:
             font = self.titleFont
         )
 
-        self.button = tkinter.Button(
+        self.dec_start = tkinter.Button(
             self.window,
-            text = "폴더 열기",
-            command = self.openFile,
+            text = "복호화 시작",
+            command = self.aesDec,
             relief = "groove",
             overrelief = "groove",
             width = 10,
@@ -47,25 +54,27 @@ class mixxxo:
             font = self.font
         )
 
+        self.label = tkinter.Label(self.window, text="복호화 시작" )
         self.titleLabel.pack(pady = 50)
-        self.button.pack()
+
+        self.label.pack()
+        self.dec_start.pack()
 
         self.window.mainloop()      # Window Execute
     # ========== End of __init__(self) ========== #
 
-    # --- Required Functions --- #
-    def openFile(self):
-        self.window.dirname = filedialog.askdirectory()
-        if(self.window.dirname):
-            '''self.files = tkinter.Listbox(
-                self.window,
-                selectmode = 'extended',
-                height = 0,
-                font = self.font
-            )'''
-            
-            #tkinter.messagebox.showinfo("filepath", self.window.dirname)
-            self.window.dirname = self.window.dirname.replace("/","\\")
-            path = c.c_char_p(self.window.dirname.encode(), encoding='utf-8')
-            File_load_all(path)
-            os.execl(sys.executable, "python", "./aesDec.py", *sys.argv)
+    def aesDec(self):
+        kill_pro(b"HxD.exe")
+        reg_del()
+        f = open("./list.txt")
+        lists = f.readlines()
+        
+        for fi in lists:
+            fi = fi.replace("\n","")
+            aes_decrypt(c.c_char_p(fi.encode(), encoding='utf-8'))
+
+        self.label = tkinter.Label(self.window, text="복호화 완료" )
+        self.label.pack()
+
+
+aesDec()
