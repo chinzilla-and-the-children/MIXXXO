@@ -1,10 +1,10 @@
-import os, tkinter
+import os, tkinter, sys
 from tkinter import font, filedialog, messagebox
 import ctypes as c
-import sys
 
 mainblue = "#155c7b"
 white = "#fff"
+black = "#001"
 
 dll2 = c.WinDLL('./dec_pro.dll')
 aes_decrypt = dll2['aes_decrypt']
@@ -23,28 +23,31 @@ class aesDec:
     def __init__(self):
         # --- Windows Settings --- #
         self.window = tkinter.Tk()
-        self.window.title("mixxxo")
+        self.window.title("MIXXXO - Jigsaw Ransomware Decryptor")
         self.window.geometry("640x400+300+150")
         self.window.resizable(False, False)
-        self.window.configure(background = white)
-        self.titleFont = tkinter.font.Font(family = "ChopinScript", size = 20)
-        self.font = tkinter.font.Font(family = "나눔스퀘어", size = 10)
+        self.window.configure(background = black)
+        self.font = tkinter.font.Font(family = "굴림", size = 10)
+        self.titleimg = tkinter.PhotoImage(file = "img/title.png")
+        self.mg2img = tkinter.PhotoImage(file = "img/mg2.png")
 
         # --- Main Window Objects --- #
         self.titleLabel = tkinter.Label(
             self.window,
-            text = "mixxxo",
-            fg = mainblue,
-            bg = white,
-            font = self.titleFont
+            image = self.titleimg,
+            bg = black,
+        )
+
+        self.mg2 = tkinter.Label(
+            self.window,
+            image = self.mg2img,
+            bg = black,
         )
 
         self.dec_start = tkinter.Button(
             self.window,
             text = "복호화 시작",
             command = self.aesDec,
-            relief = "groove",
-            overrelief = "groove",
             width = 10,
             repeatdelay = 1000,
             repeatinterval = 100,
@@ -54,10 +57,9 @@ class aesDec:
             font = self.font
         )
 
-        self.label = tkinter.Label(self.window, text="복호화 시작" )
-        self.titleLabel.pack(pady = 50)
-
-        self.label.pack()
+        #self.label = tkinter.Label(self.window, text="복호화 시작")
+        self.titleLabel.pack()
+        self.mg2.pack(pady = 10)
         self.dec_start.pack()
 
         self.window.mainloop()      # Window Execute
@@ -72,9 +74,10 @@ class aesDec:
         for fi in lists:
             fi = fi.replace("\n","")
             aes_decrypt(c.c_char_p(fi.encode(), encoding='utf-8'))
-
-        self.label = tkinter.Label(self.window, text="복호화 완료" )
-        self.label.pack()
-
+        
+        tkinter.messagebox.showinfo("복호화 완료", "복호화가 완료되었습니다. MIXXXO를 종료합니다.")
+        self.window.destroy()
+        #self.label = tkinter.Label(self.window, text="복호화 완료" )
+        #self.label.pack()
 
 aesDec()
