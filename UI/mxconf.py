@@ -71,7 +71,8 @@ class mixxxo:
     def openFile(self):
         self.window.dirname = filedialog.askdirectory()
         if(self.window.dirname):
-            tkinter.messagebox.showinfo("filepath", self.window.dirname)
+            msg = "폴더 경로 : " + self.window.dirname + "\n\n선택하신 경로에 대한 암호화 파일 목록 수집을 완료했습니다."
+            tkinter.messagebox.showinfo("filepath", msg)
             self.window.dirname = self.window.dirname.replace("/","\\")
             path = c.c_char_p(self.window.dirname.encode(), encoding='utf-8')
             File_load_all(path)
