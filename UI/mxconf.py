@@ -2,9 +2,9 @@ import os, tkinter, sys
 from tkinter import font, filedialog, messagebox
 import ctypes as c
 
-mainblue = "#155c7b"
+blue = "#30a9de"
+black = "#090707"
 white = "#fff"
-black = "#001"
 
 dll2 = c.WinDLL('./dec_pro.dll')
 File_load_all = dll2['File_load_all']
@@ -18,11 +18,13 @@ class mixxxo:
         self.window = tkinter.Tk()
         self.window.title("MIXXXO - Jigsaw Ransomware Decryptor")
         self.window.geometry("640x400+300+150")
-        self.window.resizable(False, False)
+        self.window.resizable(True, True)
         self.window.configure(background = black)
+
         self.font = tkinter.font.Font(family = "맑은 고딕", size = 10)
         self.titleimg = tkinter.PhotoImage(file = "img/title.png")
         self.mg1img = tkinter.PhotoImage(file = "img/mg1.png")
+        self.infoimg = tkinter.PhotoImage(file = "img/info.png")
 
         # --- Main Window Objects --- #
         self.titleLabel = tkinter.Label(
@@ -34,7 +36,7 @@ class mixxxo:
         self.mg1 = tkinter.Label(
             self.window,
             image = self.mg1img,
-            bg = black,
+            bg = black
         )
 
         self.button = tkinter.Button(
@@ -46,13 +48,21 @@ class mixxxo:
             repeatinterval = 100,
             bd = 0,
             fg = white,
-            bg = mainblue,
+            bg = blue,
             font = self.font
         )
 
+        self.info = tkinter.Label (
+            self.window,
+            image = self.infoimg,
+            bg = black
+        )
+
+        # --- Pack Window Objects --- #
         self.titleLabel.pack()
         self.mg1.pack(pady = 10)
-        self.button.pack()
+        self.button.pack(pady = 10)
+        self.info.pack()
 
         self.window.mainloop()      # Window Execute
     # ========== End of __init__(self) ========== #

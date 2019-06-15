@@ -2,9 +2,9 @@ import os, tkinter, sys
 from tkinter import font, filedialog, messagebox
 import ctypes as c
 
-mainblue = "#155c7b"
+blue = "#30a9de"
+black = "#090707"
 white = "#fff"
-black = "#001"
 
 dll2 = c.WinDLL('./dec_pro.dll')
 aes_decrypt = dll2['aes_decrypt']
@@ -25,11 +25,13 @@ class aesDec:
         self.window = tkinter.Tk()
         self.window.title("MIXXXO - Jigsaw Ransomware Decryptor")
         self.window.geometry("640x400+300+150")
-        self.window.resizable(False, False)
+        self.window.resizable(True, True)
         self.window.configure(background = black)
-        self.font = tkinter.font.Font(family = "굴림", size = 10)
+        self.font = tkinter.font.Font(family = "맑은 고딕", size = 10)
+
         self.titleimg = tkinter.PhotoImage(file = "img/title.png")
         self.mg2img = tkinter.PhotoImage(file = "img/mg2.png")
+        self.infoimg = tkinter.PhotoImage(file = "img/info.png")
 
         # --- Main Window Objects --- #
         self.titleLabel = tkinter.Label(
@@ -53,14 +55,21 @@ class aesDec:
             repeatinterval = 100,
             bd = 0,
             fg = white,
-            bg = mainblue,
+            bg = blue,
             font = self.font
         )
 
-        #self.label = tkinter.Label(self.window, text="복호화 시작")
+        self.info = tkinter.Label (
+            self.window,
+            i = self.infoimg,
+            bg = black
+        )
+
+        # --- Pack Window Objects --- #
         self.titleLabel.pack()
         self.mg2.pack(pady = 10)
-        self.dec_start.pack()
+        self.dec_start.pack(pady = 10)
+        self.info.pack()
 
         self.window.mainloop()      # Window Execute
     # ========== End of __init__(self) ========== #
@@ -76,6 +85,7 @@ class aesDec:
             aes_decrypt(c.c_char_p(fi.encode(), encoding='utf-8'))
         
         tkinter.messagebox.showinfo("복호화 완료", "복호화가 완료되었습니다. MIXXXO를 종료합니다.")
+        self.window.quit()
         self.window.destroy()
         #self.label = tkinter.Label(self.window, text="복호화 완료" )
         #self.label.pack()
