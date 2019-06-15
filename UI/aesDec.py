@@ -27,8 +27,9 @@ class aesDec:
         self.window.geometry("640x400+300+150")
         self.window.resizable(True, True)
         self.window.configure(background = black)
-        self.font = tkinter.font.Font(family = "맑은 고딕", size = 10)
+        self.window.iconbitmap(default = "img/icon.ico")
 
+        self.font = tkinter.font.Font(family = "맑은 고딕", size = 10)
         self.titleimg = tkinter.PhotoImage(file = "img/title.png")
         self.mg2img = tkinter.PhotoImage(file = "img/mg2.png")
         self.infoimg = tkinter.PhotoImage(file = "img/info.png")
@@ -50,7 +51,7 @@ class aesDec:
             self.window,
             text = "복호화 시작",
             command = self.aesDec,
-            width = 10,
+            width = 12,
             repeatdelay = 1000,
             repeatinterval = 100,
             bd = 0,

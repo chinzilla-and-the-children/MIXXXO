@@ -20,6 +20,7 @@ class mixxxo:
         self.window.geometry("640x400+300+150")
         self.window.resizable(True, True)
         self.window.configure(background = black)
+        self.window.iconbitmap(default = "img/icon.ico")
 
         self.font = tkinter.font.Font(family = "맑은 고딕", size = 10)
         self.titleimg = tkinter.PhotoImage(file = "img/title.png")
