@@ -1,6 +1,7 @@
 import os, tkinter, sys
 from tkinter import font, filedialog, messagebox
 import ctypes as c
+from aesDec import aesDec
 
 blue = "#30a9de"
 black = "#090707"
@@ -78,4 +79,4 @@ class mixxxo:
             path = c.c_char_p(self.window.dirname.encode(), encoding='utf-8')
             File_load_all(path)
             self.window.destroy()
-            os.execl(sys.executable, "python", "./aesDec.py", *sys.argv)
+            aesDec()

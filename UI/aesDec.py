@@ -76,8 +76,10 @@ class aesDec:
     # ========== End of __init__(self) ========== #
 
     def aesDec(self):
-        kill_pro(b"HxD.exe")
+        kill_pro(b"drpbx.exe")
+        kill_pro(b"frfx.exe")
         reg_del()
+        
         f = open("./list.txt")
         lists = f.readlines()
         
@@ -90,5 +92,3 @@ class aesDec:
         self.window.destroy()
         #self.label = tkinter.Label(self.window, text="복호화 완료" )
         #self.label.pack()
-
-aesDec()
