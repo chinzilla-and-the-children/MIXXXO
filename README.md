@@ -2,16 +2,22 @@
 > Jigsaw 랜섬웨어 복호화 툴 개발 프로젝트 (2019.04 ~ 2019.06)
 - Project by team 'Flosvia 2019'
 
-### 목표
+## 목표
   1. Jigsaw 랜섬웨어의 공격(암호화) 방식을 알아본다.
   1. Jigsaw 랜섬웨어로 인해 암호화된 파일을 복호화하는 응용프로그램을 제작한다.
 
-### 사용 기술
-* UI
-  - Python Tkinter 모듈
-  - WinDLL로 파일 불러오기, 복호화, 랜섬웨어 무력화 함수 호출
+## 사용 기술
+  1. 기능별 사용 언어 및 기술
+    * UI
+      - Python Tkinter
+      - WinDLL
 
-### 역할
+    * 내부 함수
+      - C
+        + OpenSSL
+        + WinAPI
+
+## 역할
 * UI 구현
   - <a href="https://github.com/Ssnnaaiill">Ssnnaaiill<a/>
   - <a href="https://github.com/ilyeon">ilyeon<a/>
