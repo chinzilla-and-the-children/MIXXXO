@@ -7,14 +7,14 @@
   2. Jigsaw 랜섬웨어로 인해 암호화된 파일을 복호화하는 응용프로그램을 제작한다.
 
 ## 사용 기술
-  1. UI
-    * Python Tkinter
-    * WinDLL
+  * UI
+    - Python Tkinter
+    - WinDLL
 
-  2. 내부 함수
-    * C
-      - OpenSSL
-      - WinAPI
+  * 내부 함수
+    - C
+      + OpenSSL
+      + WinAPI
 
 ## 역할
 * UI 구현
